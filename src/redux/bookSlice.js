@@ -1,12 +1,11 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { saveDataToLocalStorage } from "./utility/localStorage";
+import { loadLocalDataFromLocalStorage } from "./utility/localStorage";
+
 
 const initialState = {
     books: [
-        {
-            id: 1,
-            bookTitle: "Mary Gold",
-            readStatus: false
-        }
+        
     ]
 };
 
@@ -15,9 +14,10 @@ const initialState = {
  * @argument reducers
  * @description every function in a reducer will always have access to 'state' and 'action'.
  */
+const loadLocalState = loadLocalDataFromLocalStorage();
 export const bookSlice = createSlice({
     name: 'basicLibrary',
-    initialState,
+    loadLocalState,
     reducers: {
         addBookDetails: (state, action) => {
             console.log("Action: ", action);
@@ -26,7 +26,10 @@ export const bookSlice = createSlice({
                 bookTitle: action.payload.bookTitle,
                 readStatus: action.payload.readStatus
             };
-            state.books.push(bookDetails)
+            console.log("Before state change:", JSON.stringify(state.books), JSON.stringify(state));
+            state.push(bookDetails);
+            console.log("After state change:", JSON.stringify(state));
+            saveDataToLocalStorage(state);
         },
         removeBookDetails: (state, action) => {
             state.books = state.books.filter((book) => book.id !== action.payload);

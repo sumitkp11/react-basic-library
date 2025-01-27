@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addBookDetails } from "../redux/bookSlice";
-import Header from "./Header";
+import { Link } from "react-router-dom";
 
 
 export default function AddBooks() {
@@ -21,7 +21,7 @@ export default function AddBooks() {
     const addBookFn = (event) => {
         event.preventDefault();
         // console.log("Book Title: ", bookTitle, "Read Status", readStatus);
-        dispatch(addBookDetails({bookTitle, readStatus}))
+        dispatch(addBookDetails({bookTitle, readStatus}));
 
     }
 
@@ -29,7 +29,6 @@ export default function AddBooks() {
 
     return (
         <>
-        <Header />
         <div className="flex justify-center items-center rounded-lg border-4 w-1/2">
             <div className="grid grid-rows-2">
                 <div>

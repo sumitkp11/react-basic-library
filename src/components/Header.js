@@ -1,4 +1,4 @@
-
+import { Link } from 'react-router-dom';
 function Header() {
 
     return (
@@ -7,7 +7,7 @@ function Header() {
                     <h1>Basic Book Library</h1>
                 </div>
                 <div>
-                    <a href="/add" className="rounded-full hover:bg-slate-50 hover:text-slate-900 border-2 border-white px-5 py-1">Add Books</a>
+                    <Link to="/add" className="rounded-full hover:bg-slate-50 hover:text-slate-900 border-2 border-white px-5 py-1">Add Books</Link>
                 </div>
                 <div>
                     <h1>Filter Books</h1>

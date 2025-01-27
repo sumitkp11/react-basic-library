@@ -1,8 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
 import { updateBookDetails, removeBookDetails } from "../redux/bookSlice";
+import { useEffect } from "react";
 
 export default function BookDetails() {
-    const booksList = useSelector(state => state.books);
+    // useEffect(() => {
+
+    // })
+
+
+    const booksList = useSelector(state => state);
+    console.log("BooksList", booksList);
     const dispatch = useDispatch();
 
     return (
