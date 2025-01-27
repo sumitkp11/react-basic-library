@@ -28,7 +28,7 @@ export default function AddBooks(props) {
     /**
      * 
      * @param {*} event 
-     * @description to add book details to the store with the help of reducer
+     * @description to add/update book details to the store with the help of reducer
      */
     const addBookFn = (event) => {
         event.preventDefault();
@@ -53,16 +53,12 @@ export default function AddBooks(props) {
 
     const goToHome = () => navigate('/');
 
-
-
-
-
     return (
         <>
             <div className="flex justify-center items-center rounded-lg border-4 w-1/2">
                 <div className="grid grid-rows-2">
                     <div>
-                        <h1>Add Books Details here:</h1>
+                        <h1>{updateStatus ? "Edit" : "Add"} Books Details here:</h1>
                     </div>
                     <div>
                         <form onSubmit={addBookFn}>

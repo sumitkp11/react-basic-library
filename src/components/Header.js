@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+
 function Header() {
 
     return (
@@ -9,13 +10,8 @@ function Header() {
             <div>
                 <Link to="/add" className="rounded-full hover:bg-slate-50 hover:text-slate-900 border-2 border-white px-5 py-1 my-2">Add Books</Link>
             </div>
-
         </header>
-
     );
-
-
-
 };
 
 export default Header;

@@ -36,7 +36,6 @@ export default function BookDetails() {
             {filteredBooks.length > 0 ?
                 <div>
                     <table className="border-separate border-spacing-2 border border-slate-500 table-auto">
-
                         <thead>
                             <tr>
                                 <th className="border border-slate-600 bg-slate-600 text-white w-40">Book Title</th>

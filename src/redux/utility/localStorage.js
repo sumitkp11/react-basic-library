@@ -1,8 +1,5 @@
-
-
 export const saveDataToLocalStorage = (state) => {
-    try {
-        
+    try {      
         // const jsonState = JSON.stringify(state);
         const reduxState = {
             books: [state]
