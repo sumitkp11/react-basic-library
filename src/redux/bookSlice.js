@@ -4,9 +4,7 @@ import { loadLocalDataFromLocalStorage } from "./utility/localStorage";
 
 
 const initialState = {
-    books: [
-        
-    ]
+    books: []
 };
 
 /**
@@ -14,27 +12,29 @@ const initialState = {
  * @argument reducers
  * @description every function in a reducer will always have access to 'state' and 'action'.
  */
-const loadLocalState = loadLocalDataFromLocalStorage();
+// const loadLocalState = loadLocalDataFromLocalStorage();
 export const bookSlice = createSlice({
     name: 'basicLibrary',
-    loadLocalState,
+    initialState,
     reducers: {
         addBookDetails: (state, action) => {
-            console.log("Action: ", action);
+            // console.log("Action: ", action);
             const bookDetails = {
                 id: nanoid(),
                 bookTitle: action.payload.bookTitle,
                 readStatus: action.payload.readStatus
             };
-            console.log("Before state change:", JSON.stringify(state.books), JSON.stringify(state));
-            state.push(bookDetails);
-            console.log("After state change:", JSON.stringify(state));
-            saveDataToLocalStorage(state);
+            state.books.push(bookDetails);
+            // saveDataToLocalStorage(state.books);
         },
         removeBookDetails: (state, action) => {
             state.books = state.books.filter((book) => book.id !== action.payload);
+            // saveDataToLocalStorage(state.book);
         },
-        updateBookDetails: () => {},
+        updateBookDetails: (state, action) => {
+            state.books = state.books.map(item => item.id === action.payload.id ? {...item, ...action.payload}: item);
+            console.log("after update", state.books);
+        },
 
     }
 });

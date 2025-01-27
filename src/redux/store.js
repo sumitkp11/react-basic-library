@@ -9,5 +9,5 @@ import { loadLocalDataFromLocalStorage } from "./utility/localStorage";
 const loadLocalState = loadLocalDataFromLocalStorage();
 export const bookStore = configureStore({
     reducer: booksReducer,
-    preloadedState: loadLocalState
+    
 })
