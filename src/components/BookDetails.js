@@ -1,10 +1,14 @@
 import { useSelector, useDispatch } from "react-redux";
-import { updateBookDetails, removeBookDetails } from "../redux/bookSlice";
+import { removeBookDetails } from "../redux/bookSlice";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 export default function BookDetails() {
     let booksList = useSelector(state => state.books);
+
+    useEffect(() => {
+        setFilteredBooks(booksList);
+    }, [booksList]);
 
     const navigate = useNavigate();
 
@@ -24,11 +28,6 @@ export default function BookDetails() {
 
     };
 
-    // const editDetails = (title, status) => {
-    //     console.log("Inside editDEtails", title, status)
-    //     navigate('/add', {state: { editBookTitle: title, editReadStatus: status }})
-    // };
-
     return (
 
         <div className="flex items-center justify-center h-screen">
@@ -36,9 +35,6 @@ export default function BookDetails() {
 
             {filteredBooks.length > 0 ?
                 <div>
-
-
-
                     <table className="border-separate border-spacing-2 border border-slate-500 table-auto">
 
                         <thead>

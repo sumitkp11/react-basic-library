@@ -12,24 +12,20 @@ const initialState = {
  * @argument reducers
  * @description every function in a reducer will always have access to 'state' and 'action'.
  */
-// const loadLocalState = loadLocalDataFromLocalStorage();
 export const bookSlice = createSlice({
     name: 'basicLibrary',
     initialState,
     reducers: {
         addBookDetails: (state, action) => {
-            // console.log("Action: ", action);
             const bookDetails = {
                 id: nanoid(),
                 bookTitle: action.payload.bookTitle,
                 readStatus: action.payload.readStatus
             };
             state.books.push(bookDetails);
-            // saveDataToLocalStorage(state.books);
         },
         removeBookDetails: (state, action) => {
             state.books = state.books.filter((book) => book.id !== action.payload);
-            // saveDataToLocalStorage(state.book);
         },
         updateBookDetails: (state, action) => {
             state.books = state.books.map(item => item.id === action.payload.id ? {...item, ...action.payload}: item);

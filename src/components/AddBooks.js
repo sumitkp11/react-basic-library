@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addBookDetails, updateBookDetails } from "../redux/bookSlice";
-import { Link, useNavigate, useLocation, } from "react-router-dom";
+import { useNavigate, useLocation, } from "react-router-dom";
 
 
 export default function AddBooks(props) {
@@ -16,9 +16,8 @@ export default function AddBooks(props) {
         if (location.state) {
             setUpdateStatus(location.state.updateCall);  // Update local state with location state
         }
-      }, [location.state]);
+    }, [location.state]);
 
-    // setBookTitle(editBookTitle);
 
 
     /**
@@ -33,7 +32,7 @@ export default function AddBooks(props) {
      */
     const addBookFn = (event) => {
         event.preventDefault();
-        console.log("updateStatus",updateStatus)
+        console.log("updateStatus", updateStatus)
         // console.log("Book Title: ", bookTitle, "Read Status", readStatus);
         if (!updateStatus) {
             dispatch(addBookDetails({ bookTitle, readStatus }));
