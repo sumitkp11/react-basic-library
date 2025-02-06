@@ -18,7 +18,7 @@ export default function BookDetails() {
     const [filteredBooks, setFilteredBooks] = useState(booksList);
 
     const filterBy = (status) => {
-        if (status == 'all') {
+        if (status === 'all') {
             setFilteredBooks(booksList);
         } else {
             const newFilteredBooks = booksList.filter((book) => book.readStatus === status);
@@ -31,7 +31,7 @@ export default function BookDetails() {
     return (
 
         <div className="flex items-center justify-center h-screen">
-            <div>Filter By: <button className="rounded-full hover:bg-slate-300 hover:text-slate-900 border-2 border-white px-5" onClick={() => filterBy(true)}>Read</button><button className="rounded-full hover:bg-slate-300 hover:text-slate-900 border-2 border-white px-5" onClick={() => filterBy(false)}>Unread</button><button className="rounded-full hover:bg-slate-300 hover:text-slate-900 border-2 border-white px-5" onClick={() => filterBy('all')}>Show All</button></div><br />
+            <div><span className="text-red-500">Filter By:</span> <button className="rounded-full hover:bg-slate-300 hover:text-slate-900 border-2 border-white px-5" onClick={() => filterBy(true)}>Read</button><button className="rounded-full hover:bg-slate-300 hover:text-slate-900 border-2 border-white px-5" onClick={() => filterBy(false)}>Unread</button><button className="rounded-full hover:bg-slate-300 hover:text-slate-900 border-2 border-white px-5" onClick={() => filterBy('all')}>Show All</button></div><br />
 
             {filteredBooks.length > 0 ?
                 <div>
@@ -51,7 +51,7 @@ export default function BookDetails() {
                                     <td className="border border-slate-700"><button className="rounded-full hover:bg-slate-300 hover:text-slate-900 border-2 border-white px-5" onClick={() => navigate('/add', { state: { editBookTitle: book.bookTitle, editBookId: book.id, updateCall: true } })}>Edit</button><button className="rounded-full hover:bg-slate-300 hover:text-slate-900 border-2 border-white px-5" onClick={() => dispatch(removeBookDetails(book.id))}>Delete</button></td>
                                 </tr>
                             </tbody>
-                        ))}</table> </div> : <div className="flex"><h2>No book to show. Please insert atleast one book!</h2></div>}
+                        ))}</table> </div> : <div className="flex"><h2>No <span className="text-red-500">book</span> to show. Please insert atleast one book!</h2></div>}
         </div>
     )
 }

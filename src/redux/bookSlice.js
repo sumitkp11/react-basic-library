@@ -1,6 +1,4 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
-import { saveDataToLocalStorage } from "./utility/localStorage";
-import { loadLocalDataFromLocalStorage } from "./utility/localStorage";
 
 const initialState = {
     books: []

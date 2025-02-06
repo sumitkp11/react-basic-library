@@ -5,18 +5,18 @@ import { useNavigate, useLocation, } from "react-router-dom";
 
 
 export default function AddBooks(props) {
-    const [bookTitle, setBookTitle] = useState('0');
-    const [readStatus, setReadStatus] = useState(false);
-    const [updateStatus, setUpdateStatus] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
-    const { editBookTitle, editBookId } = location.state || {};
+    const { editBookTitle, editBookId, updateCall } = location.state || {};
+    const [bookTitle, setBookTitle] = useState(editBookTitle);
+    const [readStatus, setReadStatus] = useState(false);
+    const [updateStatus, setUpdateStatus] = useState(false);
 
     useEffect(() => {
-        if (location.state) {
-            setUpdateStatus(location.state.updateCall);  // Update local state with location state
+        if (updateCall) {
+            setUpdateStatus(updateCall);  // Update local state with location state
         }
-    }, [location.state]);
+    }, [updateCall]);
 
 
 
@@ -54,16 +54,16 @@ export default function AddBooks(props) {
     const goToHome = () => navigate('/');
 
     return (
-        <>
-            <div className="flex justify-center items-center rounded-lg border-4 w-1/2">
+    
+            <div className="flex items-center justify-center h-auto m-5">
                 <div className="grid grid-rows-2">
-                    <div>
-                        <h1>{updateStatus ? "Edit" : "Add"} Books Details here:</h1>
+                    <div className="">
+                        <h1 className="font-bold ">{updateStatus ? "Edit" : "Add"} Books Details here:</h1>
                     </div>
                     <div>
                         <form onSubmit={addBookFn}>
                             <div>
-                                <label htmlFor="bookName" className="mx-2">Book Name:</label><input type="text" name="" id="bookName" className="rounded-lg border-4 border-red px-2" placeholder="Enter name of the book" onChange={(event) => setBookTitle(event.target.value)} />
+                                <label htmlFor="bookName" className="mx-2">Book Name:</label><input type="text" name="" id="bookName" className="rounded-lg border-4 border-red px-2" placeholder="Enter name of the book" defaultValue={updateStatus ? editBookTitle : ""} onChange={(event) => setBookTitle(event.target.value)} />
                             </div>
                             <br />
                             <div>
@@ -93,6 +93,5 @@ export default function AddBooks(props) {
                     </div>
                 </div>
             </div>
-        </>
     )
 }
